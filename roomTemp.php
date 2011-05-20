@@ -1,7 +1,7 @@
 <?php
 
 /*
- * A script to get a temperature value from an attatched arduino and post the 
+ * A script to get a temperature value from an attached arduino and post the 
  * value to the MQTT topic roomTemp
  */
 
