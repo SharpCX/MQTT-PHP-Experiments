@@ -1,33 +1,37 @@
 <?php
+
+/*
+ * A script to get a temperature value from an attatched arduino and post the 
+ * value to the MQTT topic roomTemp
+ */
+
 require('SAM/php_sam.php');
-error_reporting(0); 
+error_reporting(0);
 include('mqttConnect.php');
 
 $initSerial = "stty -F /dev/ttyUSB0 cs8 9600 ignbrk -brkint -icrnl -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts -clocal -hupcl";
-$initre=shell_exec($initSerial);
+$initre = shell_exec($initSerial);
 //$conn->SetDebug(TRUE);
 
-        while($conn)
-        {
-	    
-            $cmd = "cat /dev/ttyUSB0|head -n 1";
-            $temp=shell_exec($cmd);
-            //echo $temp;
-            //sleep(1);
-            $temp=floatval($temp);
+while ($conn)
+{
 
-            $msgTemp = new SAMMessage("$temp");
+    $cmd = "cat /dev/ttyUSB0|head -n 1";
+    $temp = shell_exec($cmd);
+    //echo $temp;
+    //sleep(1);
+    $temp = floatval($temp);
 
-            //var_dump($msgTemp);
+    $msgTemp = new SAMMessage("$temp");
 
-            $conn->send('topic://roomTemp', $msgTemp, array(SAM_TIMETOLIVE=>1000));
-	    
-	    
+    //var_dump($msgTemp);
 
-            echo "sent";
+    $conn->send('topic://roomTemp', $msgTemp, array(SAM_TIMETOLIVE => 1000));
 
-            sleep(60);
 
-        }
 
+    echo "sent";
+
+    sleep(60);
+}
 ?>
