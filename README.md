@@ -53,4 +53,4 @@ temperature sensor which transmits the value over serial to the attached compute
 ### recieve.php
 
 This is an example of a script that receives MQTT messages on the topic roomTemp
- and posts them to pachube 
+ and posts them to pachube. It depends on the official pachube API.
