@@ -8,9 +8,9 @@
  * @copyright Oliver Smith 2009
  */
 
-require('SAM/php_sam.php');
+require('SAM-1.1.0/php_sam.php');
 error_reporting(0);
-
+echo '1';
 
 
 $conn = new SAMConnection();
@@ -21,7 +21,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
 $ih = 1;
 
-$conn->connect(SAM_MQTT, array(SAM_HOST => '10.1.1.10',
+$conn->connect(SAM_MQTT, array(SAM_HOST => 'http://182.92.192.146/',
     SAM_PORT => 1883));
 
 while ($conn)
